@@ -32,6 +32,16 @@ app.get('/adresses/:id', (req:Request, res:Response) => {
 
 })
 
+app.delete('/adresses/:id',(req:Request,res:Response)=>{
+    for(let i=0;i<adresses.length;i++){
+        if(adresses[i].id===+req.params.id){
+            adresses.splice(i,1)
+            res.send(204)
+            return
+        }
+    } res.send(404)
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
