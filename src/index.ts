@@ -31,6 +31,14 @@ app.post('/products',(req:Request,res:Response)=>{
     res.status(201).send(newProduct)
 })
 
+app.put('/adresses/:id',(req:Request,res:Response)=>{
+    let oneAdress = adresses.find(e=>e.id===+req.params.id)
+    if(oneAdress){
+      oneAdress.value=req.body.value
+        res.send(oneAdress)
+    }else {res.send(404)}
+})
+
 
 app.get('/adresses', (req:Request, res:Response) => {
     res.send(adresses)
