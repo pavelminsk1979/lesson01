@@ -1,6 +1,10 @@
 import express,{Request,Response} from 'express'
+import bodyParser from "body-parser";
 const app = express()
 const port = 3000
+
+const parserMideleware = bodyParser({})
+app.use(parserMideleware)
 
 const products = [{title:'tomato'},{title:'orange'}]
 const adresses = [{id:1,value:'house2'},{id:2,value:'building4'}]
@@ -20,6 +24,14 @@ app.get('/products/:productTitle', (req:Request, res:Response) => {
     } else {res.send(404)}
 
 })
+
+app.post('/products',(req:Request,res:Response)=>{
+    const newProduct = {id:+new Date(),title:req.body.title}
+    products.unshift(newProduct)
+    res.status(201).send(newProduct)
+})
+
+
 app.get('/adresses', (req:Request, res:Response) => {
     res.send(adresses)
 })
