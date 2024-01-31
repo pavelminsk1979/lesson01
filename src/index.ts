@@ -1,12 +1,12 @@
 import express,{Request,Response} from 'express'
 import bodyParser from "body-parser";
-const app = express()
+export const app = express()
 const port = 3000
 
 const parserMideleware = bodyParser({})
 app.use(parserMideleware)
 
-const products = [{title:'tomato'},{title:'orange'}]
+let  products = [{title:'tomato'},{title:'orange'}]
 const adresses = [{id:1,value:'house2'},{id:2,value:'building4'}]
 
 app.get('/products', (req:Request, res:Response) => {
@@ -60,6 +60,11 @@ app.delete('/adresses/:id',(req:Request,res:Response)=>{
             return
         }
     } res.send(404)
+})
+
+app.delete('/__test__/data',(req:Request,res:Response)=>{
+    products=[]
+    res.sendStatus(204)
 })
 
 app.listen(port, () => {
