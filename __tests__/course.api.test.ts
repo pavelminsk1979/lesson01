@@ -23,6 +23,10 @@ it('название теста уникальное',async ()=>{
             .expect(201)
         expect(response.body.title).toBe('kljalkjflakjfd');
 
+        await request(app)
+            .get('/products')
+            .expect([response.body])
+
     })
 
 
