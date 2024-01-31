@@ -1,10 +1,8 @@
 import express,{Request,Response} from 'express'
-import bodyParser from "body-parser";
 export const app = express()
 const port = 3000
 
-const parserMideleware = bodyParser({})
-app.use(parserMideleware)
+app.use(express.json())
 
 let  products = [{title:'tomato'},{title:'orange'}]
 const adresses = [{id:1,value:'house2'},{id:2,value:'building4'}]
