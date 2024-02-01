@@ -1,5 +1,6 @@
 import {Router,Request,Response} from "express";
-import {app, products} from "../index";
+import {products} from "../setting";
+
 
 
 export const productsRoute = Router({})
